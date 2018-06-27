@@ -1,0 +1,190 @@
+<!doctype>
+<html>
+<head>
+	<title>PHP NOTES</title>
+	<style>
+	h1{
+		color:green;
+	}
+	h2{
+		color:blue;
+	}
+	li,p{
+		font-size: large;
+	}
+	.EX{
+		color: red;
+	}
+</style>
+</head>
+<body>
+	<h1> 1: PHP INTRODUCTION</h1>
+	<ul>
+		<li>PHP scripts are executed on the server.</li>
+		<li>PHP is a server scripting language, and a powerful tool for making dynamic and interactive Web pages.</li>
+	</ul>
+	<h2>What is PHP?</h2>
+	<ul>
+		<li>PHP is an acronym for "PHP: Hypertext Preprocessor"</li>
+	</ul>
+	<h2>What is a PHP File?</h2>
+	<ul>
+		<li>PHP files can contain text, HTML, CSS, JavaScript, and PHP code</li>
+		<li>PHP code are executed on the server, and the result is returned to the browser as plain HTML</li>
+		<li>PHP files have extension ".php"</li>
+	</ul>
+	<h2>What PHP can do?</h2>
+	<ul>
+		<li>PHP can generate dynamic page content</li>
+		<li>PHP can create, open, read, write, delete, and close files on the server</li>
+		<li>PHP can collect form data</li>
+		<li>PHP can send and receive cookies</li>
+		<li>PHP can add, delete, modify data in your database</li>
+		<li>PHP can be used to control user-access</li>
+		<li>PHP can encrypt data</li>
+	</ul><p>With PHP you are not limited to output HTML. You can output images, PDF files, and even Flash movies. You can also output any text, such as XHTML and XML.</p>
+	<h1>2: Basic PHP Syntax</h1>
+	<h2> PHP syntax</h2>
+	<ul>
+		<li>A PHP script can be placed anywhere in the document.</li>
+		<img src="phpSyntax.png" height="100" width="200">
+		<li>A PHP file normally contains HTML tags, and some PHP scripting code.</li>
+		<li>Note: PHP statements end with a semicolon (;)</li>
+	</ul>
+	<h2>Comments in PHP</h2>
+	<ul>
+		<li>// This is a single-line comment</li>
+		<li># This is also a single-line comment</li>
+		<li>/*
+			This is a multiple-lines comment block
+			that spans over multiple
+			lines
+		*/</li>
+		<li>You can also use comments to leave out parts of a code line<br>
+			eg-> $x = 5 /* + 15 */ + 5;</li>
+		</ul>
+		<h2> Break point in PHP </h2>
+		<p><img src="brPHP.png"></p>
+		<h2>PHP Case Sensitivity</h2>
+		<li>In PHP, all keywords (e.g. if, else, while, echo, etc.), classes, functions, and user-defined functions are NOT case-sensitive.<br>
+			eg: all three echo statements below are legal<br>
+			ECHO "Hello World!";<br>
+			echo "Hello World!";<br>
+			EcHo "Hello World!";<br></li>
+			<li>However; all variable names are case-sensitive.<br>
+			eg; $color, $COLOR, and $coLOR are treated as three different variables</li>
+			<h1> 3: PHP Variables </h1>
+			<p>Variables are "containers" for storing information.</p>
+			<h2>Creating (Declaring) PHP Variables</h2>
+			<p>In PHP, a variable starts with the $ sign, followed by the name of the variable:<br>
+				eg; <br>
+				$txt = "Hello world!";<br>
+				$x = 5;<br>
+				$y = 10.5;<br>
+			Note: Unlike other programming languages, PHP has no command for declaring a variable. It is created the moment you first assign a value to it.</p>
+			<h2> PHP Variables</h2>
+			<p> Rules for PHP variables: <p>
+				<ul>
+					<li>A variable starts with the $ sign, followed by the name of the variable</li>
+					<li>A variable name must start with a letter or the underscore character</li>
+					<li>A variable name cannot start with a number</li>
+					<li>A variable name can only contain alpha-numeric characters and underscores (A-z, 0-9, and _ )</li>
+					<li>Variable names are case-sensitive ($age and $AGE are two different variables)</li></ul>
+					<p class="EX"> See : variables.php <p>
+						<h2> Output Variables</h2>
+						<p>The PHP echo statement is often used to output data to the screen.</p>
+						<p class="EX"> See : outputVariables.php <p>
+							<h2> PHP is a Loosely Typed Language</h2>
+							<ul>
+								<li>we do not have to tell PHP which data type the variable is.</li>
+								<li>PHP automatically converts the variable to the correct data type, depending on its value.</li>
+							</ul>
+							<h2>PHP Variables Scope</h2>
+							<p>PHP has three different variable scopes:</p>
+							<li>local</li>
+							<li>global</li>
+							<li>static</li>
+							<h2>Global Scope</h2>
+							<p>A variable declared outside a function has a GLOBAL SCOPE and can only be accessed outside a function</p>
+							<p class="EX"> See : globalVariable.php <p>
+								<h2> Local Scope</h2>
+								<p>A variable declared within a function has a LOCAL SCOPE and can only be accessed within that function</p>
+								<p class="EX"> See : localVariable.php <p>
+									<h2>PHP The global Keyword</h2>
+									<ul>
+										<li>The global keyword is used to access a global variable from within a function.</li>
+										<li>To do this, use the global keyword before the variables (inside the function)</li>
+									</ul>
+									<p class="EX"> See : globalKeyword.php <p>
+										<h2>$GLOBALS[index]</h2>
+										<li>PHP also stores all global variables in an array called $GLOBALS[index].</li>
+										<li>The index holds the name of the variable.</li> 
+										<li>This array is also accessible from within functions and can be used to update global variables directly.</li>
+										<p class="EX"> See : globalsArray.php <p>
+											<h2>PHP The static Keyword</h2>
+											<p>Normally, when a function is completed/executed, all of its variables are deleted. However, sometimes we want a local variable NOT to be deleted. We need it for a further job.To do this, use the static keyword when you first declare the variable</p>
+											<p class="EX"> See : static.php <p>
+												<p>Note: The variable is still local to the function.</p>
+												<h1>4: PHP echo/print <h1>
+													<p class="EX"> click here to know about echo/print : <a href="https://www.w3schools.com/pHP/php_echo_print.asp" target="_blank">echo/print</a></p>
+														<h1> 5: PHP Data Types</h1>
+														<ul><li>String</li>
+															<li>Integer</li>
+															<li>Float (floating point numbers - also called double)</li>
+															<li>Boolean</li>
+															<li>Array</li>
+															<li>Objec</li>
+															<li>NULL</li>
+															<li>Resource</li>
+														</ul>
+														<h2> PHP String</h2>
+														<li>A string is a sequence of characters, like "Hello world!".</li>
+														<li>A string can be any text inside quotes. You can use single or double quotes:</li>
+														<h2>PHP Integer</h2>
+														<p>An integer data type is a non-decimal number between -2,147,483,648 and 2,147,483,647.</p>
+														<h2>PHP Float</h2>
+														<p>A float (floating point number) is a number with a decimal point or a number in exponential form.</p>
+														<h2>PHP Boolean</h2>
+														<p>A Boolean represents two possible states: TRUE or FALSE.</p>
+														<h2>PHP Array</h2>
+														<p>An array stores multiple values in one single variable.</p>
+														<h1>PHP var_dump()</h1>
+														<p>The PHP var_dump() function returns the data type and value</p>
+														<p class="EX"> See : var_dump.php <p>
+															<h1>PHP Object</h1>
+															<p>An object is a data type which stores data and information on how to process that data.</p>
+															<p class="EX"> See : object.php <p>
+																<h1>PHP NULL Value</h1>
+																<li>Null is a special data type which can have only one value: NULL.</li>
+																<li>A variable of data type NULL is a variable that has no value assigned to it.</li>
+																<li>Tip: If a variable is created without a value, it is automatically assigned a value of NULL.</li>
+																<li>Variables can also be emptied by setting the value to NULL</li>
+																<p class="EX"> See : null.php <p>
+																	<h1>PHP Resource</h1>
+																	<li>The special resource type is not an actual data type. It is the storing of a reference to functions and resources external to PHP.</li>
+																	<li>A common example of using the resource data type is a database call.</li>
+																	<h1> 6: PHP strings </h1>
+																	<p class="EX"> click here to know about PHP strings  : <a href="https://www.w3schools.com/pHP/php_string.asp" target="_blank">PHP strings</a></p>
+																	<h1> Next content from w3school and slides</h1>
+
+
+
+
+
+
+
+
+
+
+
+													
+														</body>
+														</html>
+
+
+
+
+
+
+
+	<!--<li></li> -->

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Ryu</title>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	$('#my-div').html('<img src="http://cs.ucmo.edu/~dding/StreetFighter/Stand.png">');
+	$('#my-div img').hover( function() {
+	    	this.src = 'http://cs.ucmo.edu/~dding/StreetFighter/MouseOver.gif'
+	    }, function() {
+	    	this.src = 'http://cs.ucmo.edu/~dding/StreetFighter/Stand.png'
+		});
+	$('#my-div img').mousedown( function() {
+	    this.src = 'http://cs.ucmo.edu/~dding/StreetFighter/MouseDown.png' 
+	});
+	$('#my-div img').mousedown(function() {
+	    $('#my-div').append(
+	    '<img class="demo-hadouken" style="position:inherit;top:50px;" src="http://cs.ucmo.edu/~dding/StreetFighter/Hadouken.gif">'  );
+	});
+	$('#my-div img').mousedown(function() {
+		$('.demo-hadouken').animate({
+			"margin-left": "600px"
+		}, {
+			duration: 1000,
+			easing: 'swing',
+			complete: function() {
+				this.remove();
+			},
+			progress: function(animation, progress, remaining) {
+				var demoObjsPos;
+				if($('.demo-obs').length > 0) {
+					demoObsPos = $('.demo-obs').position();
+				} else {
+					return;
+				}
+				var hadoukenLeft = $('.demo-hadouken').position().left + parseInt(this.style['margin-left'].replace("px", ""));
+				var heightDiff = demoObsPos.top - $('.demo-hadouken').position().top; 
+				if(heightDiff < $('.demo-hadouken').innerHeight()) {
+					if(demoObsPos.left - hadoukenLeft < $('.demo-hadouken').innerWidth()) {
+						$('.demo-hadouken').stop(true, true);
+						$('.demo-obs').stop(true, true);
+					}
+				}
+			}
+		});
+	});
+	$('#my-div img').mouseup(function() {
+	    this.src = 'http://cs.ucmo.edu/~dding/StreetFighter/Stand.png'
+	});
+	startSpider();
+});
+function startSpider() {
+	setTimeout(function() {
+		var randLeft = Math.floor((Math.random() * 151)) + 350;
+	    $('#my-div').append(
+	    '<img class="demo-obs" style="position:absolute;top:200px;left:' + randLeft + 'px" src="spider.gif">');
+	    $('.demo-obs').animate({
+	        "top": "0px"
+	    }, 1000, 'linear', function() {
+	        this.remove();
+	        startSpider();
+	    });
+	}, 2000);
+}
+</script>
+</head>
+<body>
+<div id="my-div" style="position:absolute; top:100px; left:100px"></div>
+</body>
+</html>

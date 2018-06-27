@@ -1,0 +1,285 @@
+<!Doctype html>
+
+<html>
+<head>
+	<title>Nova’s Proverb Puzzle Page</title>
+	<style type="text/css">
+	* {
+		text-align: center;
+	}
+	textarea#inputText {
+	width: 600px;
+	height: 50px;
+	}
+	
+</style>
+<script>
+	var proverb = new Array();
+	proverb[0] = "Absence makes the heart grow fonder";
+	proverb[1] = "Actions speak louder than words";
+	proverb[2] = "Beggars can’t be choosers";
+	proverb[3] = "Don’t bite the hand that feeds you";
+	proverb[4] = "Don’t count your chickens before they hatch";
+	proverb[5] = "Easy come, easy go";
+	proverb[6] = "God helps those who help themselves";
+	proverb[7] = "Honesty is the best policy";
+	proverb[8] = "If you play with fire, you’ll get burned";
+	proverb[9] = "Knowledge is power";
+	proverb[10] = "Laughter is the best medicine";
+	proverb[11] = "The grass is always greener on the other side";
+	proverb[12] = "The enemy of my enemy is my friends";
+	proverb[13] = "Where there’s smoke, there’s fire";
+	proverb[14] = "You can lead a horse to water, but you can’t make him drink it";
+	proverb[15] = "There is no place like home";
+	proverb[16] = "People who live in glass houses should not throw stones";
+	proverb[17] = "Hope for the best, prepare for the worst";
+	proverb[18] = "Don’t judge a book by its cover";
+	proverb[19] = "Better late than never";
+
+	var selectedProverb = proverb[Math.floor((Math.random()*20))];
+	selectedProverb.id = "proverb";
+	var proverbLength = selectedProverb.length;
+	var flipCount = 0;
+	var spaceCount = 0;
+	var chance = 2;
+	var giveUpFlag = false;
+	var occupiedCell = 0;
+
+	function showTable() {
+		document.getElementById("para").style.visibility='hidden';
+		var i;
+		for(i = 0; i < 100; i++){
+			var btn = document.createElement("BUTTON");
+
+			btn.id = "button" + i;
+
+			if(i >= proverbLength || selectedProverb[i]==' '){
+				btn.innerHTML = ' ';
+				btn.style.visibility='hidden';
+			} else {
+				btn.style.backgroundColor = "pink";
+				occupiedCell++;
+			}
+
+			document.body.appendChild(btn);
+			btn.style.height = "50px";
+			btn.style.width = "50px";
+		}
+
+		var brTag = document.createElement('br');
+		document.body.appendChild(brTag);
+
+		createGuessBtn();
+		addShowLetter();
+	}
+
+
+
+	function showLetter(index){
+		if(giveUpFlag == true){
+			document.getElementById("button" + index).innerHTML = selectedProverb[index];
+		} else {
+			if(flipCount < Math.floor(occupiedCell/2)){
+				document.getElementById("button" + index).innerHTML = selectedProverb[index];
+				flipCount++;
+			} else {
+				alert("You have no more letters to flip, please make your guess NOW!");
+			}
+		}
+	}
+
+	function createGuessBtn(){
+		var guessbtn = document.createElement("BUTTON");
+		guessbtn.id = "GuessBtn";
+		guessbtn.innerHTML = "Make your guess Now!";
+		document.body.appendChild(guessbtn);
+
+		var brTag = document.createElement('br');
+		document.body.appendChild(brTag);
+
+		document.getElementById("GuessBtn").onclick = function fun() { makeGuess();}
+	}
+
+	function makeGuess(){
+		var input = document.createElement("textarea");
+		input.id = "inputText";
+		document.body.appendChild(input);
+
+		var brTag = document.createElement('br');
+		document.body.appendChild(brTag);
+
+		var check = document.createElement("BUTTON");
+		check.id = "checkButton";
+		check.innerHTML = "Check!"
+		document.body.appendChild(check);
+		document.getElementById("checkButton").onclick = function fun() { checkInput();}
+	}
+	function checkInput(){
+		var inputText = document.getElementById("inputText").value; 
+		if(inputText.toLowerCase() === selectedProverb.toLowerCase()){
+			var star = Math.floor(occupiedCell/2) - flipCount;
+			alert("Correct! You are "+ star + " star player");
+			window.location.reload();
+		} else {
+			if(chance == 2){
+				alert("Inorrect! You have " + chance + " chance to guess correct proverb");
+				chance--;
+				var giveUp = document.createElement("BUTTON");
+				giveUp.id = "giveUpButton";
+				giveUp.innerHTML = "GiveUp!";
+				document.body.appendChild(giveUp);
+
+				var brTag = document.createElement('br');
+				document.body.appendChild(brTag);
+
+			//document.getElementById("checkButton").innerHTML="Continue";
+			document.getElementById("giveUpButton").onclick = function fun() { showGiveUp();}
+
+		} else if(chance == 1) {
+			alert("Inorrect! You have " + chance + " chance to guess correct proverb");
+			chance--;
+		} else {
+			alert("You lost :(.. Click ok to see correct proverb. ");
+			showProverb();
+			showGiveUp();
+		}
+	}
+}
+
+function showProverb(){
+	for(i = 0; i < 100; i++){
+		document.getElementById("button"+i).innerHTML = selectedProverb[i];
+	}
+}
+
+function showGiveUp(){
+	document.getElementById("GuessBtn").style.visibility='hidden';
+	document.getElementById("inputText").style.visibility='hidden';
+	document.getElementById("checkButton").style.visibility='hidden';
+	document.getElementById("giveUpButton").style.visibility='hidden';
+
+	var newProv = document.createElement("BUTTON");
+	newProv.id = "newProverb";
+	newProv.innerHTML = "New Proverb";
+	document.body.appendChild(newProv);
+	giveUpFlag = true;
+
+	document.getElementById("newProverb").onclick = function fun() { window.location.reload();}
+}
+
+
+function addShowLetter() {
+	document.getElementById("button"+0).onclick = function fun() { showLetter(0); }
+	document.getElementById("button"+1).onclick = function fun() { showLetter(1); }
+	document.getElementById("button"+2).onclick = function fun() { showLetter(2); }
+	document.getElementById("button"+3).onclick = function fun() { showLetter(3); }
+	document.getElementById("button"+4).onclick = function fun() { showLetter(4); }
+	document.getElementById("button"+5).onclick = function fun() { showLetter(5); }
+	document.getElementById("button"+6).onclick = function fun() { showLetter(6); }
+	document.getElementById("button"+7).onclick = function fun() { showLetter(7); }
+	document.getElementById("button"+8).onclick = function fun() { showLetter(8); }
+	document.getElementById("button"+9).onclick = function fun() { showLetter(9); }
+	document.getElementById("button"+10).onclick = function fun() { showLetter(10); }
+	document.getElementById("button"+11).onclick = function fun() { showLetter(11); }
+	document.getElementById("button"+12).onclick = function fun() { showLetter(12); }
+	document.getElementById("button"+13).onclick = function fun() { showLetter(13); }
+	document.getElementById("button"+14).onclick = function fun() { showLetter(14); }
+	document.getElementById("button"+15).onclick = function fun() { showLetter(15); }
+	document.getElementById("button"+16).onclick = function fun() { showLetter(16); }
+	document.getElementById("button"+17).onclick = function fun() { showLetter(17); }
+	document.getElementById("button"+18).onclick = function fun() { showLetter(18); }
+	document.getElementById("button"+19).onclick = function fun() { showLetter(19); }
+	document.getElementById("button"+20).onclick = function fun() { showLetter(20); }
+	document.getElementById("button"+21).onclick = function fun() { showLetter(21); }
+	document.getElementById("button"+22).onclick = function fun() { showLetter(22); }
+	document.getElementById("button"+23).onclick = function fun() { showLetter(23); }
+	document.getElementById("button"+24).onclick = function fun() { showLetter(24); }
+	document.getElementById("button"+25).onclick = function fun() { showLetter(25); }
+	document.getElementById("button"+26).onclick = function fun() { showLetter(26); }
+	document.getElementById("button"+27).onclick = function fun() { showLetter(27); }
+	document.getElementById("button"+28).onclick = function fun() { showLetter(28); }
+	document.getElementById("button"+29).onclick = function fun() { showLetter(29); }
+	document.getElementById("button"+30).onclick = function fun() { showLetter(30); }
+	document.getElementById("button"+31).onclick = function fun() { showLetter(31); }
+	document.getElementById("button"+32).onclick = function fun() { showLetter(32); }
+	document.getElementById("button"+33).onclick = function fun() { showLetter(33); }
+	document.getElementById("button"+34).onclick = function fun() { showLetter(34); }
+	document.getElementById("button"+35).onclick = function fun() { showLetter(35); }
+	document.getElementById("button"+36).onclick = function fun() { showLetter(36); }
+	document.getElementById("button"+37).onclick = function fun() { showLetter(37); }
+	document.getElementById("button"+38).onclick = function fun() { showLetter(38); }
+	document.getElementById("button"+39).onclick = function fun() { showLetter(39); }
+	document.getElementById("button"+40).onclick = function fun() { showLetter(40); }
+	document.getElementById("button"+41).onclick = function fun() { showLetter(41); }
+	document.getElementById("button"+42).onclick = function fun() { showLetter(42); }
+	document.getElementById("button"+43).onclick = function fun() { showLetter(43); }
+	document.getElementById("button"+44).onclick = function fun() { showLetter(44); }
+	document.getElementById("button"+45).onclick = function fun() { showLetter(45); }
+	document.getElementById("button"+46).onclick = function fun() { showLetter(46); }
+	document.getElementById("button"+47).onclick = function fun() { showLetter(47); }
+	document.getElementById("button"+48).onclick = function fun() { showLetter(48); }
+	document.getElementById("button"+49).onclick = function fun() { showLetter(49); }
+	document.getElementById("button"+50).onclick = function fun() { showLetter(50); }
+	document.getElementById("button"+51).onclick = function fun() { showLetter(51); }
+	document.getElementById("button"+52).onclick = function fun() { showLetter(52); }
+	document.getElementById("button"+53).onclick = function fun() { showLetter(53); }
+	document.getElementById("button"+54).onclick = function fun() { showLetter(54); }
+	document.getElementById("button"+55).onclick = function fun() { showLetter(55); }
+	document.getElementById("button"+56).onclick = function fun() { showLetter(56); }
+	document.getElementById("button"+57).onclick = function fun() { showLetter(57); }
+	document.getElementById("button"+58).onclick = function fun() { showLetter(58); }
+	document.getElementById("button"+59).onclick = function fun() { showLetter(59); }
+	document.getElementById("button"+60).onclick = function fun() { showLetter(60); }
+	document.getElementById("button"+61).onclick = function fun() { showLetter(61); }
+	document.getElementById("button"+62).onclick = function fun() { showLetter(62); }
+	document.getElementById("button"+63).onclick = function fun() { showLetter(63); }
+	document.getElementById("button"+64).onclick = function fun() { showLetter(64); }
+	document.getElementById("button"+65).onclick = function fun() { showLetter(65); }
+	document.getElementById("button"+66).onclick = function fun() { showLetter(66); }
+	document.getElementById("button"+67).onclick = function fun() { showLetter(67); }
+	document.getElementById("button"+68).onclick = function fun() { showLetter(68); }
+	document.getElementById("button"+69).onclick = function fun() { showLetter(69); }
+	document.getElementById("button"+70).onclick = function fun() { showLetter(70); }
+	document.getElementById("button"+71).onclick = function fun() { showLetter(71); }
+	document.getElementById("button"+72).onclick = function fun() { showLetter(72); }
+	document.getElementById("button"+73).onclick = function fun() { showLetter(73); }
+	document.getElementById("button"+74).onclick = function fun() { showLetter(74); }
+	document.getElementById("button"+75).onclick = function fun() { showLetter(75); }
+	document.getElementById("button"+76).onclick = function fun() { showLetter(76); }
+	document.getElementById("button"+77).onclick = function fun() { showLetter(77); }
+	document.getElementById("button"+78).onclick = function fun() { showLetter(78); }
+	document.getElementById("button"+79).onclick = function fun() { showLetter(79); }
+	document.getElementById("button"+80).onclick = function fun() { showLetter(80); }
+	document.getElementById("button"+81).onclick = function fun() { showLetter(81); }
+	document.getElementById("button"+82).onclick = function fun() { showLetter(82); }
+	document.getElementById("button"+83).onclick = function fun() { showLetter(83); }
+	document.getElementById("button"+84).onclick = function fun() { showLetter(84); }
+	document.getElementById("button"+85).onclick = function fun() { showLetter(85); }
+	document.getElementById("button"+86).onclick = function fun() { showLetter(86); }
+	document.getElementById("button"+87).onclick = function fun() { showLetter(87); }
+	document.getElementById("button"+88).onclick = function fun() { showLetter(88); }
+	document.getElementById("button"+89).onclick = function fun() { showLetter(89); }
+	document.getElementById("button"+90).onclick = function fun() { showLetter(90); }
+	document.getElementById("button"+91).onclick = function fun() { showLetter(91); }
+	document.getElementById("button"+92).onclick = function fun() { showLetter(92); }
+	document.getElementById("button"+93).onclick = function fun() { showLetter(93); }
+	document.getElementById("button"+94).onclick = function fun() { showLetter(94); }
+	document.getElementById("button"+95).onclick = function fun() { showLetter(95); }
+	document.getElementById("button"+96).onclick = function fun() { showLetter(96); }
+	document.getElementById("button"+97).onclick = function fun() { showLetter(97); }
+	document.getElementById("button"+98).onclick = function fun() { showLetter(98); }
+	document.getElementById("button"+99).onclick = function fun() { showLetter(99); }
+}
+
+</script>
+</head>
+<body>
+	<h1> Let's play a game</h1>
+	<h2>Game Rules</h2>
+	<p>To play this game, you can reveal no more than half of the characters of each proverb before make a guess.</li><br>
+	The more characters you left un-flipped before you make a correct guess, the more scores you will be awarded.</p>
+	
+	<p id="para">To start the game : <button onclick="showTable()">START</button><br>
+	</body>
+	</html>
+

@@ -1,0 +1,116 @@
+/*02 - Changing font type, color, and size */
+/*h1{
+	background-color: red;
+}
+h2{
+	color: green;
+}
+p{
+	font-size: 25px;
+	font-family: geneva;
+}*/
+/********************************************************************************/
+/*03 - Multiple selectors and writing rule for more than one element
+h1,h2{
+	background-color: pink;
+}
+h2{
+	color: green;
+}*/
+/********************************************************************************/
+/*04 - Add a line to header and border property*
+h1{
+	border-bottom:1px solid black;
+}
+h2{
+	border:1px solid black;
+}*/
+/********************************************************************************/
+/*05 - Inheritance and overriding*/
+/*Inheritance
+body{
+	color: green;
+}*/
+/*Overriding
+h2{
+	color: red;
+}*/
+/********************************************************************************/
+/* 06 - Using Classes in CSS : same tag with diierent properties 
+p.one{
+	color: red;
+}
+p.two{
+	color: green;
+}*/
+/********************************************************************************/
+/*07 - More on Classes in CSS 
+.one{
+	color: red;
+}
+p.two{
+	color: green;
+}
+.underline{
+	text-decoration: underline;
+}*/
+
+/********************************************************************************/
+/*08 - Font Family : browser will use available font
+body{
+font-family: Verdana, Arial, Geneva, Arial Black;
+}*/
+/********************************************************************************/
+/*09 - The Font Weight Property
+h1{
+	font-weight:bolder;
+}
+h2{
+	font-weight:bold;
+}
+p{
+	font-weight:lighter;
+}*/
+/********************************************************************************/
+/*10-Using an external style sheet
+<link rel="styleSheet" type="text/css" href="styleSheet.css">*/
+
+/********************************************************************************/
+/*11 - Text-decoration property*/
+/*h1, h2{
+	text-decoration:underline;
+}
+blockquote{
+	text-decoration:line-through;
+}
+p{
+	text-decoration:underline overline;
+}
+*/
+/********************************************************************************/
+/*12 - Italic fonts*/
+/*h1, h2{
+	text-decoration:underline;
+}
+p.para1{
+	color:red;
+}
+p.para2{
+	color:red;
+}
+p.para3{
+	color:red;
+	font-style: italic;
+	//font-style: oblique;*/
+
+/********************************************************************************/
+/*13 - Web Colors*/
+body{
+	//background-color: silver;
+	background-color: rgb(29,400,389);
+}
+
+
+/********************************************************************************/
+/**//********************************************************************************/
+/**/
