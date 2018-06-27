@@ -1,0 +1,40 @@
+<!Doctype html>
+
+<html>
+
+<head>
+
+<script>
+var name = window.prompt("Enter your name");
+name.id = "x";
+
+
+var now = new Date();
+document.write("<br>Date and Time : " + now);
+
+document.write("<br>Hello " + name);
+
+
+var hours = now.getHours();
+
+if(hours < 12) {
+document.write(", Good Morning!");
+}
+if (hours >= 12 && hours <= 16) {
+document.write(", Good Afternoon!");
+} else {
+document.write(", Good Evening!");
+}
+document.write(" Welcome to learn JavaScript.");
+
+
+</script>
+
+</head>
+
+<body>
+
+
+</body>
+
+</html>
